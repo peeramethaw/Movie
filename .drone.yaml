@@ -15,7 +15,7 @@ steps:
 - name: build
   image: johnpapa/angular-cli
   commands:
-    - ng build --prod --base-href "https://miwtoo.github.io/drone-angular-git-test/"
+    - ng build --prod --base-href "https://peeramethaw.github.io/Movie/"
 
 - name: publish  
   image: plugins/gh-pages
