@@ -8,11 +8,11 @@ steps:
     - cd frontend_movie
     - npm install
 
-- name: test
-  image: trion/ng-cli-karma:6.2.1
-  commands:
-    - cd frontend_movie
-    - ng test --progress false --watch false
+#- name: test
+#  image: trion/ng-cli-karma:6.2.1
+#  commands:
+#    - cd frontend_movie
+#    - ng test --progress false --watch false
 
 - name: build
   image: johnpapa/angular-cli
