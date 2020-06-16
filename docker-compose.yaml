@@ -15,8 +15,8 @@ services:
       - DRONE_GIT_ALWAYS_AUTH=false
       - DRONE_TLS_AUTOCERT=false
       - DRONE_GITHUB_SERVER=https://github.com
-      - DRONE_GITHUB_CLIENT_ID= กรอก Client ID
-      - DRONE_GITHUB_CLIENT_SECRET= กรอก Client Secret
+      - DRONE_GITHUB_CLIENT_ID=0a3f3dc7a480dba0c996
+      - DRONE_GITHUB_CLIENT_SECRET=9fa1edce4acca058be3cb84ab4acfe3b08771218
       - DRONE_RUNNER_CAPACITY=2 
       - DRONE_SERVER_HOST=fbeb1796.ngrok.io
       - DRONE_SERVER_PROTO=http
