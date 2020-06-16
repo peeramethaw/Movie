@@ -24,4 +24,4 @@ steps:
       from_secret: github_username
     password:
       from_secret: github_password    
-    pages_directory: dist/drone-angular-git-test
+    pages_directory: dist/Movie
