@@ -10,12 +10,12 @@ steps:
 - name: test
   image: trion/ng-cli-karma:6.2.1
   commands:
-    - cd frontend-movie
+    - cd frontend_movie
     - ng test --progress false --watch false
 
 - name: build
   image: johnpapa/angular-cli
   commands:
-    - cd frontend-movie
+    - cd frontend_movie
     - ng build --prod --base-href "https://peeramethaw.github.io/Movie/"
 
