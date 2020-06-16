@@ -5,6 +5,7 @@ steps:
 - name: install
   image: johnpapa/angular-cli
   commands:
+    - cd frontend_movie
     - npm install
 
 - name: test
