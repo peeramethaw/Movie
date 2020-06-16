@@ -1,0 +1,27 @@
+kind: pipeline
+name: default
+
+steps:
+- name: install
+  image: johnpapa/angular-cli
+  commands:
+    - npm install
+
+- name: test
+  image: trion/ng-cli-karma:6.2.1
+  commands:
+    - ng test --progress false --watch false
+
+- name: build
+  image: johnpapa/angular-cli
+  commands:
+    - ng build --prod --base-href "https://miwtoo.github.io/drone-angular-git-test/"
+
+- name: publish  
+  image: plugins/gh-pages
+  settings:
+    username:
+      from_secret: github_username
+    password:
+      from_secret: github_password    
+    pages_directory: dist/drone-angular-git-test
