@@ -1,6 +1,19 @@
 const expressFunction = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
+
 var expressApp = expressFunction();
+
+const makeHash = async(plainText) => {
+    const result = await bcrypt.hash(plainText, 10);
+    return result;
+}
+
+const compareHash = async(plainText, hashText) => {
+    const resultCompare = await bcrypt.compare(plainText, hashText);
+    return resultCompare;
+}
 
 const url = 'mmongodb+srv://movie:movie@movie-upjmm.mongodb.net/Movie?retryWrites=true&w=majority';
 const config = {
@@ -10,7 +23,6 @@ const config = {
 
 var Schema = require("mongoose").Schema;
 const userSchema = Schema({
-    type: String,
     id: String,
     password: String,
     title: String,
@@ -38,6 +50,7 @@ expressApp.use((req, res, next) => {
     return next()
 });
 expressApp.use(expressFunction.json());
+
 expressApp.use((req, res, next) => {
     mongoose.connect(url, config)
     .then(() => {
@@ -50,11 +63,22 @@ expressApp.use((req, res, next) => {
     });
 });
 
-const addProfile = (profileData) => {
-    return new Promise ((resolve, reject) => {
-        var new_Profile = new Profile (
-            profileData
-        );
+
+
+
+const addProfile = profileData => {
+       return new Promise ((resolve, reject) => {
+        var new_Profile = new Profile ({
+            id: profileData.id,
+            password: profileData.password,
+            title: profileData.title,
+            firstName: profileData.firstName,
+            lastName: profileData.lastName,
+            sex: profileData.sex,
+            email: profileData.email,
+            file: profileData.file,
+            img: profileData.img
+        });
         new_Profile.save((err, data) => {
             if(err){
                 reject(new Error( 'Cannot insert Profile to DB!'));
@@ -88,13 +112,34 @@ const getProfiles =() => {
 
 
 expressApp.post('/profile/add', (req, res) => {
-    console.log('add'); addProfile(req.body).then(result => {
+    makeHash(req.body.password)
+    .then(hashText => {
+        const prodata = {
+            id: req.body.id,
+            password: hashText,
+            title: req.body.title,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            sex: req.body.sex,
+            email: req.body.email,
+            file: req.body.file,
+            img: req.body.img
+        }
+        console.log(prodata);
+    
+
+
+
+    console.log('add'); 
+    addProfile(prodata)
+    .then(result => {
         console.log(result);
         res.status(200).json(result);
     })
         .catch(err => {
             console.log(err);
         })
+    })
 });
 
 
