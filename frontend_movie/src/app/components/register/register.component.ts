@@ -15,10 +15,10 @@ export class RegisterComponent implements OnInit {
 
 
   profileForm = new FormGroup({
-    img: new FormControl('', [Validators.required]),
-    file: new FormControl(''),
+    img: new FormControl(''),
+    file: new FormControl('', [Validators.required]),
     id: new FormControl('', [Validators.required]),
-    password: new FormControl('',Validators.min(8)),
+    password: new FormControl('',Validators.required),
     title: new FormControl('', [Validators.required]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -29,10 +29,30 @@ export class RegisterComponent implements OnInit {
   previewLoaded: boolean = false;
 
 
+get file(){
+    return this.profileForm.get('file');
+  }
 get email(){
   return this.profileForm.get('email');
 }
-
+get firstName(){
+  return this.profileForm.get('firstName');
+}
+get lastName(){
+  return this.profileForm.get('lastName');
+}
+get id(){
+  return this.profileForm.get('id');
+}
+get password(){
+  return this.profileForm.get('password');
+}
+get title(){
+  return this.profileForm.get('title');
+}
+get sex(){
+  return this.profileForm.get('sex');
+}
 
 
   constructor(private ps: ProfileService) { }
