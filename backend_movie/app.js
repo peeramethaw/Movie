@@ -15,7 +15,7 @@ const compareHash = async(plainText, hashText) => {
     return resultCompare;
 }
 
-const url = 'mmongodb+srv://movie:movie@movie-upjmm.mongodb.net/Movie?retryWrites=true&w=majority';
+const url = 'mongodb://localhost:27017/db_it';
 const config = {
     autoIndex: true,
     useNewUrlParser: true,
