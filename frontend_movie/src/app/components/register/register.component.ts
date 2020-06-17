@@ -61,8 +61,10 @@ get sex(){
   }
 
   addProfile(){
+    if(this.profileForm.value.check == true){
     console.log(this.profileForm.value);
     this.ps.addProfile(this.profileForm.value).subscribe(
+        
         data =>{
             console.log(data)
             alert(' Product added successfully') ;
@@ -71,6 +73,7 @@ get sex(){
         err =>{
             console.log(err);
         });
+      }
 }
 
 
