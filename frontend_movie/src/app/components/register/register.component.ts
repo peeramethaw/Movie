@@ -64,7 +64,11 @@ get sex(){
     // if(this.profileForm.value.check == true){
     console.log(this.profileForm.value);
     this.ps.addProfile(this.profileForm.value).subscribe(
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> e6793810c8db32161128b99e4ce10a454af3e25e
         data =>{
             console.log(data)
             alert(' Product added successfully') ;

@@ -1,0 +1,16 @@
+kind: pipeline
+name: default
+
+steps:
+- name: install
+  image: johnpapa/angular-cli
+  commands:
+    - cd frontend_movie
+    - npm install
+
+- name: build
+  image: johnpapa/angular-cli
+  commands:
+    - cd frontend_movie
+    - ng build --prod --base-href "https://peeramethaw.github.io/Movie/"
+
