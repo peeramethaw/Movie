@@ -1,6 +1,8 @@
 const expressFunction = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 
 var expressApp = expressFunction();
@@ -155,20 +157,13 @@ expressApp.get('/profile/get', (req, res) => {
         })
 });
 
-expressApp.get('/profile/get/:id', (req, res) => {
-    //id: req.params.id;
-    console.log(req.params.id);
-    Profile.findById(req.params.id)
-        .exec(function(err, data) {
-            if (err) {
-               // console.log("Error retriveing item")
-                console.log(err)
-            } else {
-                res.json(data)
-              //  console.log("retrieveing success")
-            }
-        })
-});
+
+expressApp.use('/signin', require('./routes/signin'))
+
+
+
+
+
 
 expressApp.listen(3000, function () {
     console.log('Listening on port 3000');
